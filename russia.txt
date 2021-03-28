@@ -17,14 +17,15 @@
 *://rutracker.org/*
 *://rutor.is/*
 *://line.me/*
-
+*://lostfilm.tv/*
 
 
 [RegExp]
 
 linkedin
-protonmail
 mailfence
+protonmail
+tutanota
 
 
 
