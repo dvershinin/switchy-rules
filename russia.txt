@@ -15,16 +15,16 @@
 [Wildcard]
 
 *://rutracker.org/*
-
 *://rutor.is/*
+*://line.me/*
 
 
 
 [RegExp]
 
-^http://code\.google\.com/.*
-
-youtube
+linkedin
+protonmail
+mailfence
 
 
 
