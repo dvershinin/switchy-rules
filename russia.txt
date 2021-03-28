@@ -1,0 +1,31 @@
+; Summary: Rule List for websites censored in Russia
+
+; Author: Danila Vershinin (https://github.com/dvershinin)
+
+; Date: 2021-03-28
+
+; URL: http://samabox.com/projects/chrome/switchy/switchyrules.txt
+
+
+
+#BEGIN
+
+
+
+[Wildcard]
+
+*://rutracker.org/*
+
+*://rutor.is/*
+
+
+
+[RegExp]
+
+^http://code\.google\.com/.*
+
+youtube
+
+
+
+#END
