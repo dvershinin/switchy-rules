@@ -6,6 +6,7 @@
 
 ; URL: https://raw.githubusercontent.com/dvershinin/switchy-rules/main/russia.txt
 
+; https://github.com/dvershinin/switchy-rules
 
 
 #BEGIN
@@ -18,7 +19,6 @@
 *://rutor.is/*
 *://line.me/*
 *://lostfilm.tv/*
-*://*.hashvault.pro/*
 
 
 [RegExp]
@@ -27,7 +27,7 @@ linkedin
 mailfence
 protonmail
 tutanota
-
+hashvault
 
 
 #END
