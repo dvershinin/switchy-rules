@@ -20,7 +20,7 @@
 *://line.me/*
 *://*.line.me/*
 *://lostfilm.tv/*
-*://*.payoneer.com/
+*://*.payoneer.com/*
 
 [RegExp]
 
