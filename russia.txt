@@ -18,8 +18,9 @@
 *://rutracker.org/*
 *://rutor.is/*
 *://line.me/*
+*://*.line.me/*
 *://lostfilm.tv/*
-
+*://*.payoneer.com/
 
 [RegExp]
 
