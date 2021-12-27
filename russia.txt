@@ -17,7 +17,6 @@
 
 *://rutracker.org/*
 *://rutor.is/*
-*://line.me/*
 *://*.line.me/*
 *://lostfilm.tv/*
 *://*.payoneer.com/*
@@ -29,6 +28,7 @@ mailfence
 protonmail
 tutanota
 hashvault
+torproject
 
 
 #END
