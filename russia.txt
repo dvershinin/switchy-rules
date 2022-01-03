@@ -20,13 +20,13 @@
 *://line.me/*
 *://*.line.me/*
 *://lostfilm.tv/*
-*://payoneer.com/*
-*://*.payoneer.com/*
+
 
 [RegExp]
 
 linkedin
 mailfence
+payoneer
 protonmail
 tutanota
 hashvault
