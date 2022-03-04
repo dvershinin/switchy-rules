@@ -20,6 +20,7 @@
 *://line.me/*
 *://*.line.me/*
 *://lostfilm.tv/*
+*://grammarly.com/*
 
 
 [RegExp]
