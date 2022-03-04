@@ -15,13 +15,15 @@
 
 [Wildcard]
 
-; Censored by the Russian government:
+; Censored by the Russian government normally:
 *://rutracker.org/*
 *://rutor.is/*
 *://line.me/*
 *://*.line.me/*
 *://lostfilm.tv/*
-; Russia haters below:
+; Censored by the Russian government since Ukranian special operation:
+*://*.bbc.com/*
+; Russia haters below, blocked Russian citizens since Ukranian special operation:
 *://*.grammarly.com/*
 
 
