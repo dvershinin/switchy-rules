@@ -30,6 +30,7 @@
 *://lostfilm.tv/*
 ; # Censored by the Russian government since Ukranian special operation:
 *://*.bbc.com/*
+*://*.facebook.com/*
 ; # Russia haters below, blocked Russian citizens since Ukranian special operation:
 *://*.grammarly.com/*
 
