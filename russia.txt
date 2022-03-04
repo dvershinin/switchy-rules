@@ -22,6 +22,7 @@
 *://pornolab.net/*
 *://line.me/*
 *://*.line.me/*
+*://*.twitter.com/*
 ; ## Line API servers
 *://*.line.naver.jp/*
 *://lostfilm.tv/*
