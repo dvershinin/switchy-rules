@@ -15,18 +15,19 @@
 
 [Wildcard]
 
-; Censored by the Russian government normally:
+; # Censored by the Russian government normally:
+*://thepiratebay.org/*
 *://rutracker.org/*
 *://rutor.is/*
 *://pornolab.net/*
 *://line.me/*
 *://*.line.me/*
-; Line API servers
+; ## Line API servers
 *://*.line.naver.jp/*
 *://lostfilm.tv/*
-; Censored by the Russian government since Ukranian special operation:
+; # Censored by the Russian government since Ukranian special operation:
 *://*.bbc.com/*
-; Russia haters below, blocked Russian citizens since Ukranian special operation:
+; # Russia haters below, blocked Russian citizens since Ukranian special operation:
 *://*.grammarly.com/*
 
 
