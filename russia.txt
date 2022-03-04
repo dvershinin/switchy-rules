@@ -15,12 +15,14 @@
 
 [Wildcard]
 
+; Censored by the Russian government:
 *://rutracker.org/*
 *://rutor.is/*
 *://line.me/*
 *://*.line.me/*
 *://lostfilm.tv/*
-*://grammarly.com/*
+; Russia haters below:
+*://*.grammarly.com/*
 
 
 [RegExp]
