@@ -16,7 +16,7 @@
 [Wildcard]
 
 ; # Censored by the Russian government normally:
-*://thepiratebay.org/*
+*://*.thepiratebay.org/*
 *://rutracker.org/*
 *://rutor.is/*
 *://pornolab.net/*
