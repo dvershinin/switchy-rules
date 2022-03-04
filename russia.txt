@@ -23,6 +23,8 @@
 *://line.me/*
 *://*.line.me/*
 *://*.twitter.com/*
+; Twitter short URLs
+*://t.co/*
 ; ## Line API servers
 *://*.line.naver.jp/*
 *://lostfilm.tv/*
