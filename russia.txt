@@ -21,6 +21,8 @@
 *://pornolab.net/*
 *://line.me/*
 *://*.line.me/*
+; Line API servers
+*://*.line.naver.jp/*
 *://lostfilm.tv/*
 ; Censored by the Russian government since Ukranian special operation:
 *://*.bbc.com/*
