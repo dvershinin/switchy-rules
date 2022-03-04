@@ -18,6 +18,7 @@
 ; Censored by the Russian government normally:
 *://rutracker.org/*
 *://rutor.is/*
+*://pornolab.net/*
 *://line.me/*
 *://*.line.me/*
 *://lostfilm.tv/*
