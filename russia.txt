@@ -15,8 +15,6 @@
 
 [Wildcard]
 
-*.lostfilm.tv
-
 ; # Censored by the Russian government normally:
 *://*.thepiratebay.org/*
 *://rutracker.org/*
@@ -48,6 +46,7 @@ protonmail
 tutanota
 hashvault
 torproject
+lostfilm
 
 
 #END
