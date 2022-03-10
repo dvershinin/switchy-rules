@@ -27,7 +27,7 @@
 *://t.co/*
 ; ## Line API servers
 *://*.line.naver.jp/*
-*://*.lostfilm.tv/*
+*.lostfilm.tv
 ; # Censored by the Russian government since Ukranian special operation:
 *://*.bbc.com/*
 *://*.bbci.co.uk/*
