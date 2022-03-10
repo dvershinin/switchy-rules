@@ -11,31 +11,22 @@
 
 #BEGIN
 
-
-
 [Wildcard]
 
-; # Censored by the Russian government normally:
 *://*.thepiratebay.org/*
-*://rutracker.org/*
-*://rutor.is/*
-*://pornolab.net/*
-*://line.me/*
+*://*.rutracker.org/*
+*://*.rutor.is/*
+*://*.pornolab.net/*
 *://*.line.me/*
 *://*.twitter.com/*
-; Twitter short URLs
-*://t.co/*
-; ## Line API servers
+*://*.t.co/*
 *://*.line.naver.jp/*
-
-; # Censored by the Russian government since Ukranian special operation:
 *://*.bbc.com/*
 *://*.bbci.co.uk/*
 *://*.facebook.com/*
 *://*.fbcdn.net/*
-; # Russia haters below, blocked Russian citizens since Ukranian special operation:
 *://*.grammarly.com/*
-
+*://*.lostfilm/*
 
 [RegExp]
 
