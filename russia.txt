@@ -30,6 +30,7 @@
 
 [RegExp]
 
+instagram
 linkedin
 mailfence
 payoneer
