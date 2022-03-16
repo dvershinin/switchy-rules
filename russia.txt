@@ -2,7 +2,7 @@
 
 ; Author: Danila Vershinin (https://github.com/dvershinin)
 
-; Date: 2021-12-16
+; Date: 2022-03-16
 
 ; URL: https://raw.githubusercontent.com/dvershinin/switchy-rules/main/russia.txt
 
@@ -19,6 +19,7 @@
 *://*.pornolab.net/*
 *://*.line.me/*
 *://*.twitter.com/*
+*://*.twimg.com/*
 *://*.t.co/*
 *://*.line.naver.jp/*
 *://*.bbc.com/*
