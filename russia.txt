@@ -13,6 +13,7 @@
 
 [Wildcard]
 
+; Roskomnadzor
 *://*.thepiratebay.org/*
 *://*.rutracker.org/*
 *://*.rutor.is/*
@@ -26,11 +27,14 @@
 *://*.bbci.co.uk/*
 *://*.facebook.com/*
 *://*.fbcdn.net/*
-*://*.grammarly.com/*
 *://*.lostfilm/*
+; Self-imposed
+*://*.grammarly.com/*
+
 
 [RegExp]
 
+; Roskomnadzor
 instagram
 linkedin
 mailfence
@@ -39,6 +43,7 @@ protonmail
 tutanota
 hashvault
 torproject
+; Self-imposed
 upwork
 circleci
 
