@@ -1,0 +1,9 @@
+[SwitchyOmega Conditions]
+; Require: SwitchyOmega >= 2.3.2
+; Date: 3/27/2022
+; Usage: https://github.com/FelisCatus/SwitchyOmega/wiki/RuleListUsage
+
+@note Upwork has banned Russians
+*.upwork.com
+@note Upwork has banned Russians
+circleci
