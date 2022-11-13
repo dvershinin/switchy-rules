@@ -1,0 +1,21 @@
+; Summary: Rule List for websites censored in Indonesia
+
+; Author: Danila Vershinin (https://github.com/dvershinin)
+
+; Date: 2022-03-22
+
+; URL: https://raw.githubusercontent.com/dvershinin/switchy-rules/main/indonesia.txt
+
+; https://github.com/dvershinin/switchy-rules
+
+
+#BEGIN
+
+[Wildcard]
+
+; Government censored domains will fail to open and have certificate for internetpositif.id
+; https://trustpositif.kominfo.go.id/ can be used to check if a domain is censored
+; and 30M+ database of censored domains is available for download via 
+; https://trustpositif.kominfo.go.id/assets/db/domains
+*://*.iherb.com/*
+*://*.pornhub.com/*
