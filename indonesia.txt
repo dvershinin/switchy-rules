@@ -2,7 +2,7 @@
 
 ; Author: Danila Vershinin (https://github.com/dvershinin)
 
-; Date: 2022-03-22
+; Date: 2022-11-17
 
 ; URL: https://raw.githubusercontent.com/dvershinin/switchy-rules/main/indonesia.txt
 
@@ -19,3 +19,4 @@
 ; https://trustpositif.kominfo.go.id/assets/db/domains
 *://*.iherb.com/*
 *://*.pornhub.com/*
+*://*.reddit.com/*
