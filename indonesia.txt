@@ -20,3 +20,4 @@
 *://*.iherb.com/*
 *://*.pornhub.com/*
 *://*.reddit.com/*
+*://*.tvsubtitles.net/*
