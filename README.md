@@ -29,14 +29,31 @@ elsewhere).
 Create a switch profile, or using the default auto switch profile.
 In the switch profile, proceed to "Rule List Config" and enter URLs below depending on the country of residence.
 
-#### Countries
+### Countries
 
 When located in the country listed, use its rule list in order to gain informative decision about using restricted 
 websites in that country.
 
 Requests to restricted websites will be routed through your proxy.
 
-* Russia: `https://raw.githubusercontent.com/dvershinin/switchy-rules/main/russia.txt`. 
+#### Inside Russia
+
+Switchy rules: `https://raw.githubusercontent.com/dvershinin/switchy-rules/main/russia.txt`. 
+
+#### Inside Indonesia
+
+The censorship system in Indonesia is based mostly on DNS.
+The ISPs hijack DNS system in a way that port 53 is taken over by the providers.
+No matter what DNS nameservers you set (Google, Cloudflare, or whatever), all requests to port 53 to anywhere, will go by Indonesia DNS censorship system.
+
+This is most easiest to bypass in Chrome:
+
+1. Select the three-dot menu in your browser > Settings.
+2. Select Privacy and security > Security.
+3. Scroll down and enable Use secure DNS.
+4. Select the With option, and from the drop-down menu choose Cloudflare (1.1.1.1).
+
+In this way, DNS requests do not go via 53 port, and are anonymous to the Indonesian DNS censorship.
 
 ## Caveats
 
