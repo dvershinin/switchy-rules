@@ -5,7 +5,7 @@ https://raw.githubusercontent.com/dvershinin/switchy-rules/main/switchy.pac.js
  */
 function FindProxyForURL(url, host) {
     // premier.one also
-    if (shExpMatch(host, "*.ru") || shExpMatch(host, "ipinfo.io") || shExpMatch(host, "premier.one")) {
+    if (shExpMatch(host, "*.ru") || shExpMatch(host, "ipinfo.io") || shExpMatch(host, "premier.one") || shExpMatch(host, "*.yandex.net")) {
         return 'SOCKS5 localhost:1080;SOCKS localhost:1080';
     }
     return "DIRECT";
