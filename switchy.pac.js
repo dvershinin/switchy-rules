@@ -4,8 +4,9 @@ Safari can't be configured with file:// PAC files. You need to serve it from a w
 https://raw.githubusercontent.com/dvershinin/switchy-rules/main/switchy.pac.js
  */
 function FindProxyForURL(url, host) {
-    if (shExpMatch(host, "*.gosuslugi.ru")) {
-        // Gosuslugi works fine without proxy, and it is defunct when using proxy
+    if (shExpMatch(host, "gosuslugi.ru") ||
+        shExpMatch(host, "*.gosuslugi.ru")) {
+        // Gosuslugi works fine without a proxy, and it is defunct when using proxy
         return "DIRECT";
     }
     if (shExpMatch(host, "*.ru") ||
