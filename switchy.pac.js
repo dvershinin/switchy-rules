@@ -4,11 +4,22 @@ Safari can't be configured with file:// PAC files. You need to serve it from a w
 https://raw.githubusercontent.com/dvershinin/switchy-rules/main/switchy.pac.js
  */
 function FindProxyForURL(url, host) {
+    // Gosuslugi works fine without a proxy, and it is defunct when using proxy
     if (shExpMatch(host, "gosuslugi.ru") ||
         shExpMatch(host, "*.gosuslugi.ru")) {
-        // Gosuslugi works fine without a proxy, and it is defunct when using proxy
         return "DIRECT";
     }
+    // Google also works fine without a proxy, and working for corporate US company, requires no Russian VPN
+    if (shExpMatch(host, "google.ru") ||
+        shExpMatch(host, "*.google.ru")) {
+        return "DIRECT";
+    }
+    // Lenta.Ru does not require a Russian proxy
+    if (shExpMatch(host, "lenta.ru") ||
+        shExpMatch(host, "*.lenta.ru")) {
+        return "DIRECT";
+    }
+    // All other .ru domains and some specific domains go through the Russian proxy
     if (shExpMatch(host, "*.ru") ||
         shExpMatch(host, "ipinfo.io") ||
         shExpMatch(host, "premier.one") ||
