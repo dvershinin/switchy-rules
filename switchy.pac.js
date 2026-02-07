@@ -9,16 +9,16 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "*.gosuslugi.ru")) {
         return "DIRECT";
     }
-    # VK video works from any location
+    // VK video works from any location
     if (shExpMatch(host, "vkvideo.ru") ||
         shExpMatch(host, "*.vkvideo.ru")) {
         return "DIRECT";
     }
-    # VK main works from any location
+    // VK main works from any location
     if (shExpMatch(host, "vk.com") || shExpMatch(host, "vk.ru") ||
         shExpMatch(host, "*.vk.com") || shExpMatch(host, "*.vk.ru")) {
         return "DIRECT";
-    }     
+    }
     // Google also works fine without a proxy, and working for corporate US company, requires no Russian VPN
     if (shExpMatch(host, "google.ru") ||
         shExpMatch(host, "*.google.ru")) {
