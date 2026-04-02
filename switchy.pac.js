@@ -29,8 +29,9 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "*.lenta.ru")) {
         return "DIRECT";
     }
-    // All other .ru domains and some specific domains go through the Russian proxy
+    // All other .ru and .рф domains and some specific domains go through the Russian proxy
     if (shExpMatch(host, "*.ru") ||
+        shExpMatch(host, "*.xn--p1ai") ||
         shExpMatch(host, "ipinfo.io") ||
         shExpMatch(host, "premier.one") ||
         shExpMatch(host, "*.yandex.net")) {
