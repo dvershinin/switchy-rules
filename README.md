@@ -63,7 +63,21 @@ This PAC file can also be used as a system-level proxy on macOS via:
 
 Set the URL to:
 
-    https://raw.githubusercontent.com/dvershinin/switchy-rules/refs/heads/main/switchy.pac.js?v=1
+    https://raw.githubusercontent.com/dvershinin/switchy-rules/refs/heads/main/switchy.pac.js?v=3
+
+### Proxy ports
+
+| Port | What it should be | Purpose |
+| ---- | ----------------- | ------- |
+| `127.0.0.1:1080` | SSH SOCKS tunnel to a Russia exit | Routing `.ru` / `.рф` / Russian-geofenced sites (strict — no DIRECT fallback, so if the tunnel is down those sites fail rather than leak) |
+| `127.0.0.1:2408` | Cloudflare WARP via [usque](https://github.com/Diniboy1123/usque) as local SOCKS5 | Default for everything else, useful when the upstream ISP throttles Cloudflare WARP at the protocol level (common on Malaysian ISPs). `; DIRECT` fallback means stopping usque transparently disables WARP routing without touching the PAC |
+
+Start/stop the WARP proxy (when the process is managed by launchd under label `com.usque`):
+
+```bash
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.usque.plist   # on
+launchctl bootout    gui/$(id -u)/com.usque                               # off
+```
 
 ### Reloading the PAC after an edit
 

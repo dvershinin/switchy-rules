@@ -2,6 +2,20 @@
 https://apple.stackexchange.com/questions/396677/catalina-safari-proxy-automatic-configuration-pac-is-not-used
 Safari can't be configured with file:// PAC files. You need to serve it from a web server.
 https://raw.githubusercontent.com/dvershinin/switchy-rules/main/switchy.pac.js
+
+Proxy routing strategy:
+  - 127.0.0.1:1080  -> SSH tunnel to a Russia exit (for .ru / .рф / Russian-geofenced sites)
+  - 127.0.0.1:2408  -> Cloudflare WARP via usque (default everywhere else, with DIRECT fallback)
+
+"SOCKS5 ...; DIRECT" fallback means: when the local SOCKS5 isn't listening
+(e.g. you stopped usque / closed the SSH tunnel), clients transparently go
+DIRECT instead of erroring. So toggling a proxy on/off = start/stop the
+corresponding local process. Russia rule intentionally omits the DIRECT
+fallback to avoid leaking unproxied requests to Russian-geofenced sites.
+
+Private hosts / own infra should be added to the system proxy bypass list
+via `networksetup -setproxybypassdomains`, not this PAC — that keeps
+personal hostnames out of this public repo.
  */
 function FindProxyForURL(url, host) {
     // ГИС ЖКХ (dom.gosuslugi.ru) is on a geofenced Rostelecom range,
@@ -44,5 +58,6 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "*.yandex.net")) {
         return 'SOCKS5 127.0.0.1:1080;SOCKS 127.0.0.1:1080';
     }
-    return "DIRECT";
+    // Default: Cloudflare WARP via usque, fall back to DIRECT if usque is off
+    return 'SOCKS5 127.0.0.1:2408; DIRECT';
 }
