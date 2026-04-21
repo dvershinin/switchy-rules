@@ -65,6 +65,20 @@ Set the URL to:
 
     https://raw.githubusercontent.com/dvershinin/switchy-rules/refs/heads/main/switchy.pac.js?v=1
 
+### Reloading the PAC after an edit
+
+macOS caches PAC files aggressively. After pushing changes to `switchy.pac.js`,
+editing the file alone does not make macOS pick them up. Force a reload by
+either:
+
+* Bumping the `?v=N` query parameter in the Automatic Proxy Configuration URL
+  (e.g. `?v=1` → `?v=2`), Apply. This is the purpose of the `?v=` suffix.
+* Toggling the "Automatic Proxy Configuration" checkbox off, Apply, on, Apply.
+
+Also note that `raw.githubusercontent.com` takes a few minutes to reflect a
+pushed commit and ignores cache-buster query strings during that window, so if
+a reload still shows the old rules, wait ~5 minutes and try again.
+
 ### Required: Apple Domain Bypass
 
 On macOS 26 (Tahoe), sandboxed system daemons (`remindd`, `itunescloudd`,
