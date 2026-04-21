@@ -4,6 +4,13 @@ Safari can't be configured with file:// PAC files. You need to serve it from a w
 https://raw.githubusercontent.com/dvershinin/switchy-rules/main/switchy.pac.js
  */
 function FindProxyForURL(url, host) {
+    // ГИС ЖКХ (dom.gosuslugi.ru) is on a geofenced Rostelecom range,
+    // unreachable from some networks — force it through the Russian proxy.
+    // Must come before the generic gosuslugi.ru DIRECT rule below.
+    if (shExpMatch(host, "dom.gosuslugi.ru") ||
+        shExpMatch(host, "*.dom.gosuslugi.ru")) {
+        return 'SOCKS5 127.0.0.1:1080;SOCKS 127.0.0.1:1080';
+    }
     // Gosuslugi works fine without a proxy, and it is defunct when using proxy
     if (shExpMatch(host, "gosuslugi.ru") ||
         shExpMatch(host, "*.gosuslugi.ru")) {
