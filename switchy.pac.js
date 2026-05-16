@@ -104,6 +104,28 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "api.anthropic.com")) {
         return "DIRECT";
     }
+    // Apple Notarization / OCSP / CRL / CloudKit must bypass usque too.
+    // When these endpoints are unreachable, trustd/syspolicyd's cached
+    // Notarization tickets for Developer-ID-signed apps expire and aren't
+    // refreshed. The kernel-level AMFI then applies a stricter sandbox to
+    // affected bundles. Observed symptom (2026-05-16): Docker Desktop
+    // 4.66.0 launched fine for days while usque was healthy, then began
+    // crashing with the same "unmarshaling start request: unexpected EOF"
+    // signature after a transient WARP outage poisoned the Notarization
+    // cache. Bypass these so trustd can always reach Apple directly.
+    if (shExpMatch(host, "ocsp.apple.com") ||
+        shExpMatch(host, "ocsp2.apple.com") ||
+        shExpMatch(host, "ocsp.digicert.com") ||
+        shExpMatch(host, "crl.apple.com") ||
+        shExpMatch(host, "crl3.digicert.com") ||
+        shExpMatch(host, "crl4.digicert.com") ||
+        shExpMatch(host, "api.apple-cloudkit.com") ||
+        shExpMatch(host, "*.apple-cloudkit.com") ||
+        shExpMatch(host, "ax.itunes.apple.com") ||
+        shExpMatch(host, "gs.apple.com") ||
+        shExpMatch(host, "valid.apple.com")) {
+        return "DIRECT";
+    }
     // All other .ru and .рф domains and some specific domains go through the Russian proxy
     if (shExpMatch(host, "*.ru") ||
         shExpMatch(host, "*.xn--p1ai") ||
