@@ -28,6 +28,53 @@ via `networksetup -setproxybypassdomains`, not this PAC — that keeps
 personal hostnames out of this public repo.
  */
 function FindProxyForURL(url, host) {
+    // --- Filtering-captive-Wi-Fi escape (added 2026-05-24) -------------------
+    // Some captive networks (hotel / airport / corporate-guest Wi-Fi sitting
+    // behind a UTM firewall) are hostile to every normal egress path this PAC
+    // uses, so the rules below would all fail there:
+    //   * UDP is blocked  -> Cloudflare WARP / usque (the 2408 default at the
+    //     bottom) can't build its QUIC/MASQUE tunnel. 2408 still ACCEPTS the
+    //     local SOCKS connect, then black-holes — so "; DIRECT" does NOT rescue
+    //     you here, because it only falls back when the SOCKS *connect* fails.
+    //   * Raw TCP is dropped unless it's TLS-on-443 -> the 1080 SSH tunnel can't
+    //     connect either.
+    //   * HTTPS to "uncategorized" destination IPs is TLS-intercepted (the
+    //     firewall serves its own CA cert), so going DIRECT gives cert errors.
+    // The one thing that escapes cleanly is HTTPS/443 to big CDN / cloud IP
+    // ranges (Cloudflare, Apple, Google, GitHub, ...) which such firewalls
+    // trust and pass uninspected.
+    //
+    // So on this kind of network we send traffic to a local SOCKS5 escape
+    // tunnel on 127.0.0.1:1086. That tunnel (a separate, locally-run process —
+    // intentionally NOT described here, per the no-personal-hosts rule above)
+    // egresses via one of those trusted CDN IP ranges, so the firewall lets it
+    // through. "; DIRECT" keeps things graceful if the tunnel process is off.
+    //
+    // Detection: match the captive network by its LAN subnet. myIpAddressEx()
+    // returns ALL local interface IPs joined by ";", so the substring test
+    // stays correct even when a mesh-VPN interface is also up — a plain
+    // myIpAddress() can hand back the VPN's address and miss the LAN one.
+    // Swap/extend the subnet string per captive network. This entire block is
+    // skipped (no-op) on any network whose LAN subnet doesn't match.
+    //
+    // DIRECT carve-outs below: the captive-portal login flow + LAN gateway (so
+    // you can authenticate at all — routing the portal through the tunnel makes
+    // login impossible), and Apple hosts (trusted by these firewalls, and
+    // several macOS background services misbehave when proxied).
+    var _myips = (typeof myIpAddressEx === "function") ? myIpAddressEx() : myIpAddress();
+    if (_myips && _myips.indexOf("192.168.101.") !== -1) {   // captive LAN subnet
+        if (isPlainHostName(host) ||
+            shExpMatch(host, "*.local") ||
+            shExpMatch(host, "192.168.*") ||             // LAN gateway / portal host
+            shExpMatch(host, "captive.apple.com") ||     // macOS connectivity probe
+            shExpMatch(host, "*.apple.com") ||           // Apple services prefer direct
+            shExpMatch(host, "*.ruijienetworks.com")) {  // captive-portal vendor
+            return "DIRECT";
+        }
+        return "SOCKS5 127.0.0.1:1086; DIRECT";
+    }
+    // -------------------------------------------------------------------------
+
     // ГИС ЖКХ (dom.gosuslugi.ru) is on a geofenced Rostelecom range,
     // unreachable from some networks — force it through the Russian proxy.
     // Must come before the generic gosuslugi.ru DIRECT rule below.
