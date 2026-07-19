@@ -126,6 +126,16 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "valid.apple.com")) {
         return "DIRECT";
     }
+    // Shopee Indonesia anti-bot flags the WARP/Singapore exit as a crawler
+    // (endless "Verify to Continue" whose captcha API itself refuses to load,
+    // scene=crawler_item). Serve it from the real local ISP IP like the
+    // phone app does. shopeemobile.com hosts the JS/assets/captcha bundles.
+    if (shExpMatch(host, "shopee.co.id") ||
+        shExpMatch(host, "*.shopee.co.id") ||
+        shExpMatch(host, "*.shopeemobile.com") ||
+        shExpMatch(host, "*.shopee.io")) {
+        return "DIRECT";
+    }
     // All other .ru and .рф domains and some specific domains go through the Russian proxy
     if (shExpMatch(host, "*.ru") ||
         shExpMatch(host, "*.xn--p1ai") ||
