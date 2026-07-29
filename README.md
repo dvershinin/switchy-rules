@@ -63,7 +63,7 @@ This PAC file can also be used as a system-level proxy on macOS via:
 
 Set the URL to:
 
-    https://raw.githubusercontent.com/dvershinin/switchy-rules/refs/heads/main/switchy.pac.js?v=8
+    https://raw.githubusercontent.com/dvershinin/switchy-rules/refs/heads/main/switchy.pac.js?v=9
 
 ### Proxy ports
 
