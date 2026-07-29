@@ -63,7 +63,7 @@ This PAC file can also be used as a system-level proxy on macOS via:
 
 Set the URL to:
 
-    https://raw.githubusercontent.com/dvershinin/switchy-rules/refs/heads/main/switchy.pac.js?v=3
+    https://raw.githubusercontent.com/dvershinin/switchy-rules/refs/heads/main/switchy.pac.js?v=8
 
 ### Proxy ports
 
@@ -92,6 +92,11 @@ either:
 Also note that `raw.githubusercontent.com` takes a few minutes to reflect a
 pushed commit and ignores cache-buster query strings during that window, so if
 a reload still shows the old rules, wait ~5 minutes and try again.
+
+### Wildberries
+
+Wildberries hosts under `wildberries.ru`, `wb.ru`, and `wbbasket.ru` return
+`DIRECT` because their routing is handled outside this PAC.
 
 ### Required: Apple Domain Bypass
 

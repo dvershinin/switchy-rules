@@ -136,6 +136,16 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "*.shopee.io")) {
         return "DIRECT";
     }
+    // Wildberries traffic is handled outside this PAC. Bypass the generic
+    // .ru SOCKS rule for its API, login, and static basket hosts.
+    if (shExpMatch(host, "wildberries.ru") ||
+        shExpMatch(host, "*.wildberries.ru") ||
+        shExpMatch(host, "wb.ru") ||
+        shExpMatch(host, "*.wb.ru") ||
+        shExpMatch(host, "wbbasket.ru") ||
+        shExpMatch(host, "*.wbbasket.ru")) {
+        return "DIRECT";
+    }
     // All other .ru and .рф domains and some specific domains go through the Russian proxy
     if (shExpMatch(host, "*.ru") ||
         shExpMatch(host, "*.xn--p1ai") ||
