@@ -146,6 +146,17 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "*.wbbasket.ru")) {
         return "DIRECT";
     }
+    // These Pochta hosts are routed through a selective Tailscale App
+    // Connector. DIRECT here bypasses the generic .ru SOCKS rule so the
+    // operating system can route their destination IPs through Tailscale.
+    if (shExpMatch(host, "pochta.ru") ||
+        shExpMatch(host, "www.pochta.ru") ||
+        shExpMatch(host, "zakaznoe.pochta.ru") ||
+        shExpMatch(host, "passport.pochta.ru") ||
+        shExpMatch(host, "static.pochta.ru") ||
+        shExpMatch(host, "chat-ct.pochta.ru")) {
+        return "DIRECT";
+    }
     // All other .ru and .рф domains and some specific domains go through the Russian proxy
     if (shExpMatch(host, "*.ru") ||
         shExpMatch(host, "*.xn--p1ai") ||

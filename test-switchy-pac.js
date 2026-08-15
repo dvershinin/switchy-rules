@@ -20,6 +20,12 @@ const directHosts = [
     "id.wb.ru",
     "wbbasket.ru",
     "static-basket-01.wbbasket.ru",
+    "pochta.ru",
+    "www.pochta.ru",
+    "zakaznoe.pochta.ru",
+    "passport.pochta.ru",
+    "static.pochta.ru",
+    "chat-ct.pochta.ru",
 ];
 
 for (const host of directHosts) {
