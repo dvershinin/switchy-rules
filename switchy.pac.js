@@ -157,11 +157,20 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "chat-ct.pochta.ru")) {
         return "DIRECT";
     }
-    // All other .ru and .рф domains and some specific domains go through the Russian proxy
+    // All other .ru and .рф domains and some specific domains go through the Russian proxy.
+    //
+    // smartcaptcha.yandexcloud.net is Yandex SmartCaptcha, which gates login on
+    // Russian sites such as my.novofon.ru. Through WARP it fails (measured 000
+    // after 15.7 s; Chrome reports net::ERR_CONNECTION_CLOSED), the hidden
+    // smart-token input stays empty, and the site answers "Неверный логин или
+    // пароль" — indistinguishable from a wrong password. Through the Russian
+    // SOCKS it is 200 in 3.3 s. Only the captcha host, not all of
+    // *.yandexcloud.net: that domain also hosts unrelated customer services.
     if (shExpMatch(host, "*.ru") ||
         shExpMatch(host, "*.xn--p1ai") ||
         shExpMatch(host, "ipinfo.io") ||
         shExpMatch(host, "premier.one") ||
+        shExpMatch(host, "smartcaptcha.yandexcloud.net") ||
         shExpMatch(host, "*.yandex.net")) {
         return 'SOCKS5 127.0.0.1:1080;SOCKS 127.0.0.1:1080';
     }
