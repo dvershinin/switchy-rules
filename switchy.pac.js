@@ -60,6 +60,21 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "*.lenta.ru")) {
         return "DIRECT";
     }
+    // ChatGPT web/billing must present a US IP so subscription checkout is
+    // charged in USD. 127.0.0.1:1081 is an SSH dynamic SOCKS to a US Linode
+    // (ssh -f -N -D 127.0.0.1:1081 web). auth.openai.com and pay.openai.com
+    // are listed here explicitly because the broken-PAC-fallback block below
+    // would otherwise catch them via *.openai.com and send them DIRECT.
+    // api.openai.com intentionally stays in that DIRECT block — API traffic
+    // from Docker must not depend on this ad-hoc tunnel. The '; DIRECT'
+    // tail keeps daily ChatGPT usable when the tunnel isn't running, so
+    // before an actual purchase, confirm the checkout shows USD.
+    if (shExpMatch(host, "chatgpt.com") ||
+        shExpMatch(host, "*.chatgpt.com") ||
+        shExpMatch(host, "auth.openai.com") ||
+        shExpMatch(host, "pay.openai.com")) {
+        return 'SOCKS5 127.0.0.1:1081; DIRECT';
+    }
     // ------------------------------------------------------------------
     // DIRECT bypass for clients with a broken PAC fallback.
     //
