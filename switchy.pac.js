@@ -172,6 +172,19 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "chat-ct.pochta.ru")) {
         return "DIRECT";
     }
+    // MAX Messenger (max.ru / oneme.ru / okcdn.ru) must NOT ride the Russian
+    // SOCKS: that proxy is tunnelled through the Penza tablet, so routing MAX
+    // signaling through it makes video calls TO that very tablet depend on the
+    // tablet's own flaky Wi-Fi, and adds ~0.5 s RTT. Measured 2026-11-05:
+    // every MAX host answers identically DIRECT vs via Penza (no geofence),
+    // and the call media engine already connects to okcdn.ru IPs directly.
+    if (shExpMatch(host, "max.ru") ||
+        shExpMatch(host, "*.max.ru") ||
+        shExpMatch(host, "oneme.ru") ||
+        shExpMatch(host, "*.oneme.ru") ||
+        shExpMatch(host, "*.okcdn.ru")) {
+        return "DIRECT";
+    }
     // All other .ru and .рф domains and some specific domains go through the Russian proxy.
     //
     // smartcaptcha.yandexcloud.net is Yandex SmartCaptcha, which gates login on
