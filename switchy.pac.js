@@ -141,6 +141,17 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "valid.apple.com")) {
         return "DIRECT";
     }
+    // Apple ID web sign-in (App Store Connect and its auth widget) must
+    // leave from the real local address. Apple treats a login arriving
+    // from a shared tunnel exit as a new, untrusted location, and
+    // automated session recovery refuses to submit credentials unless
+    // these hosts resolve DIRECT.
+    if (shExpMatch(host, "appstoreconnect.apple.com") ||
+        shExpMatch(host, "idmsa.apple.com") ||
+        shExpMatch(host, "appleid.apple.com") ||
+        shExpMatch(host, "appleid.cdn-apple.com")) {
+        return "DIRECT";
+    }
     // Shopee Indonesia anti-bot flags the WARP/Singapore exit as a crawler
     // (endless "Verify to Continue" whose captcha API itself refuses to load,
     // scene=crawler_item). Serve it from the real local ISP IP like the

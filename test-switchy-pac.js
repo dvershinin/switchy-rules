@@ -26,6 +26,10 @@ const directHosts = [
     "passport.pochta.ru",
     "static.pochta.ru",
     "chat-ct.pochta.ru",
+    "appstoreconnect.apple.com",
+    "idmsa.apple.com",
+    "appleid.apple.com",
+    "appleid.cdn-apple.com",
 ];
 
 for (const host of directHosts) {
