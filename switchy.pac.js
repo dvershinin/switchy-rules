@@ -183,6 +183,21 @@ function FindProxyForURL(url, host) {
         shExpMatch(host, "chat-ct.pochta.ru")) {
         return "DIRECT";
     }
+    // T-Bank (tbank.ru, legacy tinkoff.ru, cdn-tinkoff.ru static hosts) must
+    // NOT ride the Russian SOCKS. Its address ranges are already routed at the
+    // operating-system level through a Tailscale subnet router, which also
+    // covers phones; the SOCKS hop only stacks a slow residential tunnel on
+    // top. Measured 2026-11-11 for business.tbank.ru: first byte in 12.2 s
+    // via the Russian SOCKS vs 1.4 s DIRECT. The CDN hosts sit outside the
+    // routed ranges and answer the same from a foreign address.
+    if (shExpMatch(host, "tbank.ru") ||
+        shExpMatch(host, "*.tbank.ru") ||
+        shExpMatch(host, "tinkoff.ru") ||
+        shExpMatch(host, "*.tinkoff.ru") ||
+        shExpMatch(host, "cdn-tinkoff.ru") ||
+        shExpMatch(host, "*.cdn-tinkoff.ru")) {
+        return "DIRECT";
+    }
     // MAX Messenger (max.ru / oneme.ru / okcdn.ru) must NOT ride the Russian
     // SOCKS: that proxy is tunnelled through the Penza tablet, so routing MAX
     // signaling through it makes video calls TO that very tablet depend on the
